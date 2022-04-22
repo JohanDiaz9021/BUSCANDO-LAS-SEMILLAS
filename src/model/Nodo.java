@@ -9,9 +9,9 @@ public class Nodo {
 	private Nodo prev;
 	public Nodo(int posicion) {
 		this.posicion = posicion;
-		semilla ="";
-		enlace="";
-		jugadores ="";
+		semilla =" ";
+		enlace=" ";
+		jugadores =" ";
 	}
 	
 	

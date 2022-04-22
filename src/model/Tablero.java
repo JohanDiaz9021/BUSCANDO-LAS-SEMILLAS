@@ -7,126 +7,93 @@ public class Tablero {
 	private int semillas;
 	private int enlaces;
 	private int tamanioTablero;
-	public Tablero(int numeroFilas, int numeroColum, int enlaces2, int semillas2) {
-		setNumeroColumnas(numeroColum);
-		this.setNumeroFilas(numeroFilas);
-		setEnlaces(enlaces2);
-		setSemillas(semillas2);
-		tamanioTablero = numeroColum*numeroFilas;
-		crearPrimerNodo();
+	
+	public Tablero(int row, int col, String players) {
+		numeroColumnas = col;
+		numeroFilas = row ;
+		tamanioTablero = numeroColumnas * numeroFilas;
+		semillas = 0;
+		enlaces = 0;
+		createMatrix(players);
 	}
-	private void crearPrimerNodo() {
+	
+	public void createMatrix(String players) {
+		
 		first = new Nodo(1);
-		int posicionRick  = (int) (Math.random() * tamanioTablero);
-		int posicionMorty  = (int) (Math.random() * tamanioTablero);
-		if(posicionMorty == 1) {
-			first.setJugadores("M");
-		}
-		if(posicionRick ==1) {
-			first.setJugadores("R");
-		}
+		first.setJugadores(players);
 		
-		
-		first.setPrev(crearTablero(first, 1,posicionMorty,posicionRick));
-		first.getPrev().setNext(first);
-		
+		createdBoard(first, 1);
+
 	}
-	private Nodo crearTablero(Nodo first2, int i, int posicionMorty, int posicionRick) {
+	private Nodo createdBoard(Nodo first1, int i) {
 		if (i < tamanioTablero) {
 			i++;
-			Nodo nuevo = new Nodo(i);
-			if(i == posicionMorty) {
-				nuevo.setJugadores("M");
-			}
-			if(i == posicionRick) {
-				nuevo.setJugadores("R");
-			}
-			first2.setNext(nuevo);
-			nuevo.setPrev(first2);
-			crearTablero(nuevo, i, posicionMorty,  posicionRick);
+			Nodo current = new Nodo(i);
+			first1.setNext(current);
+			current.setPrev(first1);
+			createdBoard(current, i);
 		}
-		return first2;
+		return first1;
 	}
-	public int getNumeroFilas() {
-		return numeroFilas;
+	public String prePrint() {
+		String out2 = "";
+		String out = printBoard(out2, first, 1, 1, 0);
+		return out;
 	}
-	public void setNumeroFilas(int numeroFilas) {
-		this.numeroFilas = numeroFilas;
-	}
-	public int getNumeroColumnas() {
-		return numeroColumnas;
-	}
-	public void setNumeroColumnas(int numeroColumnas) {
-		this.numeroColumnas = numeroColumnas;
-	}
-	public int getEnlaces() {
-		return enlaces;
-	}
-	public void setEnlaces(int enlaces) {
-		this.enlaces = enlaces;
-	}
-	public int getSemillas() {
-		return semillas;
-	}
-	public void setSemillas(int semillas) {
-		this.semillas = semillas;
-	}
-	public void imprimir() {
-		String texto = "";
-		imprimirTablero(texto, first, 1, 1, 0);
-		
-	}
-	private String imprimirTablero(String texto, Nodo first2, int i, int j, int k) {
-		if (k < tamanioTablero - 2) {
-			k++;
-			if (j == 1) {
+	public String printBoard(String out, Nodo first2, int num, int num2, int num3) {
+		if (num3 < tamanioTablero - 2) {
+			num3++;
+			if (num2 == 1) {
 				String out3 = "";
-				String out2 = recorridoSiguiente(first2, i, out3);
-				texto = out2 + "\n" + texto;
-				j = 2;
-				first2 = recorridoNodos(first2, 1, texto);
+				String out2 = recordNext(first2, num, out3);
+				out = out2 + "\n" + out;
+				num2 = 2;
+				first2 = recordNode(first2, 1, out);
 				if (first2 != null) {
-					texto = imprimirTablero(texto, first2, i, j, k);
+					out = printBoard(out, first2, num, num2, num3);
 				}
 			} else {
 				String out3 = "";
-				String out2 = recorridoPrevio(first2, i, out3);
-				texto = out2 + "\n" + texto;
-				j = 1;
-				first2 = recorridoNodos(first2, 1, texto);
+				String out2 = recordPrev(first2, num, out3);
+				out = out2 + "\n" + out;
+				num2 = 1;
+				first2 = recordNode(first2, 1, out);
 				if (first2 != null) {
-					texto = imprimirTablero(texto, first2, i, j, k);
+					out = printBoard(out, first2, num, num2, num3);
 				}
 			}
 		}
-		return texto;
+		return out;
 	}
-	public String recorridoSiguiente(Nodo first2, int num2, String out) {
+	public String recordNext(Nodo first2, int num2, String out) {
 		if (num2 <= numeroColumnas) {
 			out = out + " " + first2.toString();
 			first2 = first2.getNext();
 			num2++;
-			out = recorridoSiguiente(first2, num2, out);
+			out = recordNext(first2, num2, out);
 		}
 
 		return out;
 	}
-	public Nodo recorridoNodos(Nodo first2, int num2, String out) {
+	public Nodo recordNode(Nodo first2, int num2, String out) {
 		if (num2 <= numeroColumnas) {
 			first2 = first2.getNext();
 			num2++;
-			first2 = recorridoNodos(first2, num2, out);
+			first2 = recordNode(first2, num2, out);
 		}
 		return first2;
 	}
-	
-	public String recorridoPrevio(Nodo first2, int num2, String out) {
+	public String recordPrev(Nodo first2, int num2, String out) {
 		if (num2 <= numeroColumnas) {
 			out = first2.toString() + " " + out;
 			num2++;
-			out = recorridoPrevio(first2.getNext(), num2, out);
+			out = recordPrev(first2.getNext(), num2, out);
 		}
 		return out;
 	}
+	
+	
 
+	
+	
 }
