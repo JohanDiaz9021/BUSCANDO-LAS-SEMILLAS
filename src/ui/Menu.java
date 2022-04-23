@@ -3,17 +3,18 @@ package ui;
 
 import java.util.Scanner;
 
-import model.Juego;
+import model.Game;
+
 
 public class Menu {
 	private Scanner scanner;
 	public final static String opcionPlayers = "RM";
 	private int positionA;
 	private int positionB;
-	private Juego juego;
+	private Game juego;
 	public Menu () {
 		scanner = new Scanner(System.in);
-		juego = new Juego();
+		juego = new Game();
 		positionA = 0;
 		positionB = 1;
 	}
@@ -65,18 +66,20 @@ public class Menu {
 			juego.printBoard(columnas, filas, num4);
 
 			int n = (int) (Math.random() * value) + 2;
-			game.snakerPosition(columns, rows, snakes, n, valueTo);
-			game.laderPosition(columns, rows, ladder, n, valueTo);
-			System.out.println(game.printB());
-			scan.nextLine();
-			System.out.println(game.printValue());
+			juego.enalcesPosition(filas, columnas, enlaces, n, valueTo);
+			System.out.println(juego.printB());
+			
+			juego.semillasPosition(filas, columnas, semillas, n, valueTo);
+			System.out.println(juego.printB());
+			scanner.nextLine();
+			System.out.println(juego.printValue());
 			boolean win = false;
-			m(columns, rows, snakes, ladder, num4, players, 0, 'a', win);
+			//m(columns, rows, snakes, ladder, num4, players, 0, 'a', win);
 
 		} else {
 			System.out.println(
 					"\nEl numero de serpientes y escalera es superior al numero de celdas o causa conflicto\n");
-			menu(num);
+			//menu(num);
 		}
 
 	}
