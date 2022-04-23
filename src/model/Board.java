@@ -2,11 +2,11 @@ package model;
 
 public class Board {
 	private Node first;
-	private int numRows;
-	private int numCols;
-	private int snakers;
-	private int laders;
+	private int filas;
+	private int columnas;
+
 	private int max;
+	private int semillas;
 	
 	/**
 	 * constructor method <br>
@@ -16,10 +16,10 @@ public class Board {
 	 * @param players song artist
 	 */
 	public Board(int n, int m, String players) {
-		setNumRows(n);
-		numCols = m;
-		setSnakers(0);
-		setLaders(0);
+		filas=n;
+		columnas = m;
+		semillas =0;
+		
 		max = n * m;
 		createMatrix(players);
 	}
@@ -125,7 +125,7 @@ public class Board {
 	 * @return the route returns to the right
 	 */
 	public String recordNext(Node first2, int num2, String out) {
-		if (num2 <= numCols) {
+		if (num2 <= columnas) {
 			out = out + "" + first2.toString();
 			first2 = first2.getNext();
 			num2++;
@@ -145,7 +145,7 @@ public class Board {
 	 * @return 
 	 */
 	public String recordPrev(Node first2, int num2, String out) {
-		if (num2 <= numCols) {
+		if (num2 <= columnas) {
 			out = first2.toString() + "" + out;
 			num2++;
 			out = recordPrev(first2.getNext(), num2, out);
@@ -163,7 +163,7 @@ public class Board {
 	 * @return the nodo record
 	 */
 	public Node recordNode(Node first2, int num2, String out) {
-		if (num2 <= numCols) {
+		if (num2 <= columnas) {
 			first2 = first2.getNext();
 			num2++;
 			first2 = recordNode(first2, num2, out);
@@ -177,8 +177,8 @@ public class Board {
 	 * <b> pre: constructor method </b>  
 	 * @return numRows
 	 */
-	public int getNumRows() {
-		return numRows;
+	public int getFilas() {
+		return filas;
 	}
 	
 	
@@ -187,8 +187,8 @@ public class Board {
 	 * <b> pre: constructor method </b> 
 	 * @param numRows: position
 	 */
-	public void setNumRows(int numRows) {
-		this.numRows = numRows;
+	public void setFilas(int numRows) {
+		this.filas = numRows;
 	}
 	
 	
@@ -281,7 +281,7 @@ public class Board {
 	 * @return out 
 	 */
 	public String recordNext2(Node first2, int num2, String out) {
-		if (num2 <= numCols) {
+		if (num2 <= columnas) {
 			out = out + "" + first2.toString2();
 			first2 = first2.getNext();
 			num2++;
@@ -302,7 +302,7 @@ public class Board {
 	 * @return
 	 */
 	public String recordPrev2(Node first2, int num2, String out) {
-		if (num2 <= numCols) {
+		if (num2 <= columnas) {
 			out = first2.toString2() + "" + out;
 			num2++;
 			out = recordPrev2(first2.getNext(), num2, out);
@@ -376,7 +376,7 @@ public class Board {
 				}
 				if (node.getEnlace() != " ") {
 					
-					if(foundSemilla(node.getPrev(), node.getEnlace(),symbol)==false) {
+					if(foundEnlace(node.getPrev(), node.getEnlace(),symbol)==false) {
 						
 						String player = node.getPlayers();
 						node.setPlayers(symbol + player);
@@ -456,16 +456,7 @@ public class Board {
 	 */
 	public boolean foundSemilla(Node first2, String let,String symbol) {
 		boolean out = false;
-		if (first2.getSemilla().equals(let)) {
-			
-			String semilla = first2.getPlayers();
-			first2.setPlayers(symbol + semilla);
-			out = true;
-		} else {
-			if (first2.getNext() != null) {
-				out = foundSemilla(first2.getNext(), let,symbol);
-			}
-		}
+		
 		return out;
 	}
 	
@@ -494,24 +485,6 @@ public class Board {
 		return out;
 	}
 	
-	/**
-	 * get method <br>
-	 * <b> pre: constructor method </b>  
-	 * @return snakers
-	 */
-	public int getSnakers() {
-		return snakers;
-	}
-	
-	
-	/**
-	 * set method <br>
-	 * <b> pre: constructor method </b> 
-	 * @param snakers: snakes
-	 */
-	public void setSnakers(int snakers) {
-		this.snakers = snakers;
-	}
 	
 	
 	/**
@@ -519,8 +492,8 @@ public class Board {
 	 * <b> pre: constructor method </b>  
 	 * @return laders
 	 */
-	public int getLaders() {
-		return laders;
+	public int getSemillas() {
+		return semillas;
 	}
 	
 	
@@ -529,7 +502,7 @@ public class Board {
 	 * <b> pre: constructor method </b> 
 	 * @param laders: ladders
 	 */
-	public void setLaders(int laders) {
-		this.laders = laders;
+	public void setSemillas(int semillas) {
+		this.semillas = semillas;
 	}
 }

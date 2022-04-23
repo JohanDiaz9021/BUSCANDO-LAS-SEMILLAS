@@ -10,13 +10,13 @@ public class Main {
 		menu = new Menu();
 
 	}
-	public static void main (String[] args) throws FileNotFoundException, ClassNotFoundException, IOException {
+	public static void main (String[] args) throws FileNotFoundException, ClassNotFoundException, IOException, InterruptedException {
 		Main main = new Main();
 		main.loadMenu();
 
 		
 	}
-	private void loadMenu() {
+	private void loadMenu() throws FileNotFoundException, ClassNotFoundException, InterruptedException, IOException {
 		menu.IniciarJuego();
 		
 	}

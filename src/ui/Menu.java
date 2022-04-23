@@ -1,6 +1,8 @@
 package ui;
 
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 import model.Game;
@@ -18,7 +20,7 @@ public class Menu {
 		positionA = 0;
 		positionB = 1;
 	}
-	public void IniciarJuego() {
+	public void IniciarJuego() throws FileNotFoundException, ClassNotFoundException, InterruptedException, IOException {
 		System.out.println("*********************BIENVENIDOS*********************\n");
 		int filas = 0;
 		int columnas = 0;
@@ -74,7 +76,7 @@ public class Menu {
 			scanner.nextLine();
 			System.out.println(juego.printValue());
 			boolean win = false;
-			//m(columns, rows, snakes, ladder, num4, players, 0, 'a', win);
+			go(columnas, filas, enlaces, semillas, num4, players, 0, 'a', win);
 
 		} else {
 			System.out.println(
@@ -93,7 +95,58 @@ public class Menu {
 		}
 		return out;
 	}
-	
+	private void go(int columnas, int filas, int enlasces, int semillas, String num4, int players, int ini, char ch,
+			boolean win) throws InterruptedException, FileNotFoundException, IOException, ClassNotFoundException {
+		String player = "";
+		if (ini == 0) {
+			player = juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch);
+			System.out.println(
+					juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch) + "jugador N°" + (ini + 1));
+			System.out.println("Enter para tirar dados");// giving the user a chance to roll
+			scanner.nextLine();// waiting for enter key
+			int numMoves = juego.rollDice();
+			System.out.println(numMoves + "<= resultado dado");
+			if (juego.movePlayer(juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch),
+					numMoves) == true) {
+				System.out.println("****  GANASTE  ****");
+				win = true;
+				System.out.println(juego.printValue());
+			} else {
+				System.out.println(juego.printValue());
+				if (players > 1) {
+					ini++;
+				}
+			}
+			}
+		else {
+			player = juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch);
+			System.out.println(
+					juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch) + "jugador N°" + (ini + 1));
+			System.out.println("Enter para tirar dados");// giving the user a chance to roll
+			 scanner.nextLine();// waiting for enter key
+			int numMoves = juego.rollDice();
+			System.out.println(numMoves + "<= resultado dado");
+			if (juego.movePlayer(juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch),
+					numMoves) == true) {
+
+				win = true;
+				System.out.println("****  GANASTE  ****");
+				System.out.println(juego.printValue());
+			} else {
+				System.out.println(juego.printValue());
+				ini++;
+				if (ini == players) {
+					ini = 0;
+
+				}
+
+			}
+		}
+		if (win == false) {
+			
+			go(columnas, filas, enlasces, semillas, num4, players, ini, ch, win);
+		} 
+	}
 	
 
 }	
