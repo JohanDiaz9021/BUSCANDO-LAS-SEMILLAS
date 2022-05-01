@@ -20,7 +20,7 @@ public class Node {
 		pos = po;
 		semillas = " ";
 		enlaces = " ";
-		players = "";
+		players = " ";
 	}
 
 	//________________________________

@@ -26,8 +26,8 @@ public class Game {
 	 * @param players
 	 * @return
 	 */
-	public String printBoard(int col, int row, String players) {
-		board = new Board(row, col, players);
+	public String printBoard(int col, int row, String players, int value) {
+		board = new Board(row, col, players , value);
 		String out = board.prePrint();
 		return out;
 	}
@@ -253,6 +253,9 @@ public class Game {
 		return board.foundPlayer(symbol, position);
 
 	}
+public void changeSemillas (int newNumSemillas) {
+		board.setSemillas(newNumSemillas);
+	}
 	
-	
+
 }
