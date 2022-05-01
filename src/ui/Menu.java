@@ -97,10 +97,11 @@ public class Menu {
 	private void go(int columnas, int filas, int enlasces, int semillas, String num4, int players, int ini, char ch,
 			boolean win) throws InterruptedException, FileNotFoundException, IOException, ClassNotFoundException {
 		if (ini == 0) {
-			System.out.println(
-					juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch) + " jugador  : " + "Rick");
+
 			boolean run = true;
 			while (run) {
+				System.out.println(juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch)
+						+ " jugador  : " + "Rick");
 				System.out
 						.println("1. Tirar dado\r\n" + "2. Ver tablero\r\n" + "3. Ver enlaces\r\n" + "4. Marcador\r\n");
 				int opcion = scanner.nextInt();
@@ -143,26 +144,52 @@ public class Menu {
 				}
 			}
 		} else {
-			System.out.println(juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch)
-					+ " jugador N° : " + "Morty");
-			System.out.println("Enter para tirar dados");// giving the user a chance to roll
-			scanner.nextLine();// waiting for enter key
-			int numMoves = juego.rollDice();
-			System.out.println(numMoves + "<= resultado dado");
-			if (juego.movePlayer(juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch),
-					numMoves) == true) {
 
-				win = true;
-				System.out.println("****  FIN DEL JUEGO  ****");
-				System.out.println(juego.printValue());
-			} else {
-				System.out.println(juego.printValue());
-				ini++;
-				if (ini == players) {
-					ini = 0;
+			boolean run = true;
+			while (run) {
+				System.out.println(juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch)
+						+ " jugador N° : " + "Morty");
+				System.out
+						.println("1. Tirar dado\r\n" + "2. Ver tablero\r\n" + "3. Ver enlaces\r\n" + "4. Marcador\r\n");
+				int opcion = scanner.nextInt();
 
+				switch (opcion) {
+				case 1:
+					
+					System.out.println("Enter para tirar dados");// giving the user a chance to roll
+					scanner.nextLine();// waiting for enter key
+					int numMoves = juego.rollDice();
+					System.out.println(numMoves + " <= resultado dado ");
+					System.out.println("\n");
+					if (juego.movePlayer(juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch),
+							numMoves) == true) {
+
+						win = true;
+						System.out.println("****  FIN DEL JUEGO  ****");
+					} else {
+						ini++;
+						if (ini == players) {
+							ini = 0;
+
+						}
+
+					}
+					run = false;
+					break;
+				case 2:
+					System.out.println(juego.printValue());
+
+					break;
+				case 3:
+					System.out.println(juego.printB());
+
+					break;
+
+				case 4:
+
+					System.out.println(juego.obtenerPuntos());
+					break;
 				}
-
 			}
 		}
 		if (win == false) {
