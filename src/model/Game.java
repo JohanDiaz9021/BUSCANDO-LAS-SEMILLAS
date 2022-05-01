@@ -10,7 +10,7 @@ public class Game {
 	Scanner scanner = new Scanner(System.in);
 	private int positionA;
 	private int positionB;
-	public final static String enlaces = "ABCDEFGHIJKLMNOPQRSTW";
+	public final static String enlaces = "ABCDEFGHIJKLNOPQSTW";
 	private Board board;
 
 	public Game() {
@@ -257,5 +257,10 @@ public void changeSemillas (int newNumSemillas) {
 		board.setSemillas(newNumSemillas);
 	}
 	
-
+public String obtenerPuntos() {
+	String out = "";
+	out = "Puntos de Rick " + board.getPlayerR() +"\n";
+	out+= "Puntos de Morty " + board.getPlayerM() +"\n";
+	return out;
+}
 }

@@ -116,7 +116,7 @@ public class Node {
 	 * @return A message with position, ladder or snake
 	 */
 	public String toString() {
-		return "[" + pos + enlaces+semillas + "\t]";
+		return "[" + enlaces + "\t]";
 	}
 	
 	
@@ -128,7 +128,17 @@ public class Node {
 	 * @return A message with player, ladder or snake
 	 */
 	public String toString2() {
-		return "[" + players+enlaces+semillas + "\t]";
+		if(players.equals(" ")) {
+			if(semillas.equals(" ")) {
+				return "[" + pos + "\t]";
+			}else {
+				return "[" + semillas + "\t]";
+			}
+		}
+		else {
+			return "[" + players + "\t]";
+		}
+		
 	}
 	
 	//________________________________
