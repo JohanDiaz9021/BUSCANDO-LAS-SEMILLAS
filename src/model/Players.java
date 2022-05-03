@@ -14,7 +14,6 @@ public class Players implements Serializable{
 	private Players right;
 	private String caracters;
 	
-	
 	/**
 	 * constructor method <br>
 	 * <b> pre: we need the atributes </b> 
@@ -28,8 +27,6 @@ public class Players implements Serializable{
 		score= sc;
 		caracters = ca;
 	}
-	
-	
 	/**
 	 * get method <br>
 	 * <b> pre: constructor method </b>  
@@ -38,9 +35,7 @@ public class Players implements Serializable{
 	public int getScore() {
 		return score;
 	}
-	
 	//________________________________
-	
 	/**
 	 * set method <br>
 	 * <b> pre: constructor method </b> 
@@ -49,10 +44,7 @@ public class Players implements Serializable{
 	public void setScore(int score) {
 		this.score = score;
 	}
-	
 	//________________________________
-	
-	
 	/**
 	 * get method <br>
 	 * <b> pre: constructor method </b>  
@@ -61,10 +53,7 @@ public class Players implements Serializable{
 	public String getSymbol() {
 		return symbol;
 	}
-	
 	//________________________________
-	
-	
 	/**
 	 * set method <br>
 	 * <b> pre: constructor method </b> 
@@ -73,9 +62,7 @@ public class Players implements Serializable{
 	public void setSymbol(String symbol) {
 		this.symbol = symbol;
 	}
-	
 	//________________________________
-	
 	/**
 	 * get method <br>
 	 * <b> pre: constructor method </b>  
@@ -84,7 +71,6 @@ public class Players implements Serializable{
 	public String getNickName() {
 		return nickName;
 	}
-	
 	//________________________________
 	/**
 	 * set method <br>
@@ -94,10 +80,7 @@ public class Players implements Serializable{
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
 	}
-	
-	
 	//________________________________
-	
 	/**
 	 * get method <br>
 	 * <b> pre: constructor method </b>  
@@ -106,10 +89,7 @@ public class Players implements Serializable{
 	public Players getLeft() {
 		return left;
 	}
-	
 	//________________________________
-	
-	
 	/**
 	 * get method <br>
 	 * <b> pre: constructor method </b>  
@@ -118,9 +98,7 @@ public class Players implements Serializable{
 	public Players getRight() {
 		return right;
 	}
-	
 	//________________________________
-	
 	/**
 	 * set method <br>
 	 * <b> pre: constructor method </b> 
@@ -129,9 +107,7 @@ public class Players implements Serializable{
 	public void setLeft(Players l) {
 		left = l;
 	}
-	
 	//________________________________
-	
 	/**
 	 * set method <br>
 	 * <b> pre: constructor method </b> 
@@ -140,9 +116,7 @@ public class Players implements Serializable{
 	public void setRight(Players r) {
 		right = r;
 	}
-	
 	//________________________________
-	
 	/**
 	 * show player information on screen<br>
 	 * <b> pre: we need the player's information </b> 
@@ -153,9 +127,7 @@ public class Players implements Serializable{
 		return out;
 		
 	}
-	
 	//________________________________
-	
 	/**
 	 * get method <br>
 	 * <b> pre: constructor method </b>  
@@ -164,9 +136,7 @@ public class Players implements Serializable{
 	public String getCaracters() {
 		return caracters;
 	}
-	
 	//________________________________
-	
 	/**
 	 * set method <br>
 	 * <b> pre: constructor method </b> 

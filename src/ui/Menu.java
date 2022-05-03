@@ -12,14 +12,12 @@ public class Menu {
 	private int positionA;
 	private int positionB;
 	private Game juego;
-
 	public Menu() {
 		scanner = new Scanner(System.in);
 		juego = new Game();
 		positionA = 0;
 		positionB = 1;
 	}
-
 	public void IniciarJuego() throws FileNotFoundException, ClassNotFoundException, InterruptedException, IOException {
 		System.out.println("*********************BIENVENIDOS*********************\n");
 		int filas = 0;
@@ -80,9 +78,7 @@ public class Menu {
 					"\nEl numero de serpientes y escalera es superior al numero de celdas o causa conflicto\n");
 			// menu(num);
 		}
-
 	}
-
 	public String players(String out, int numP) {
 		if (numP >= 1) {
 			out += opcionPlayers.substring(positionA, positionB);
@@ -93,7 +89,6 @@ public class Menu {
 		}
 		return out;
 	}
-
 	private void go(int columnas, int filas, int enlasces, int semillas, String num4, int players, int ini, char ch,
 			boolean win) throws InterruptedException, FileNotFoundException, IOException, ClassNotFoundException {
 		if (ini == 0) {
@@ -115,7 +110,7 @@ public class Menu {
 					System.out.println(numMoves + " <= resultado dado ");
 					System.out.println("\n");
 
-					if (juego.movePlayer(juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch),
+					if (juego.movePlayerPrev(juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch),
 							numMoves) == true) {
 						System.out.println("****  FIN DEL JUEGO  ****");
 						win = true;
@@ -144,11 +139,10 @@ public class Menu {
 				}
 			}
 		} else {
-
 			boolean run = true;
 			while (run) {
 				System.out.println(juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch)
-						+ " jugador N° : " + "Morty");
+						+ " jugador N  : " + "Morty");
 				System.out
 						.println("1. Tirar dado\r\n" + "2. Ver tablero\r\n" + "3. Ver enlaces\r\n" + "4. Marcador\r\n");
 				int opcion = scanner.nextInt();
@@ -197,5 +191,4 @@ public class Menu {
 			go(columnas, filas, enlasces, semillas, num4, players, ini, ch, win);
 		}
 	}
-
 }

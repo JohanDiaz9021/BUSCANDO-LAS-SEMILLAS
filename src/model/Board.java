@@ -8,11 +8,9 @@ public class Board {
 	private int playerM; 
 	private int max;
 	private int semillas;
-
 	/**
 	 * constructor method <br>
 	 * <b> pre: we need the atributes </b>
-	 * 
 	 * @param n       row numbers
 	 * @param m       column numbers
 	 * @param players song artist
@@ -26,14 +24,11 @@ public class Board {
 		max = n * m;
 		createMatrix(players, value);
 	}
-
 	/**
 	 * depending on the option chosen, the program performs an option <br>
 	 * <b> pre: the data that the user enters, columns, rows, players, siblos. </b>
-	 * 
 	 * @param players menu option
 	 * @param value
-	 * 
 	 */
 	public void createMatrix(String players, int value) {
 		value = columnas * filas;
@@ -54,9 +49,11 @@ public class Board {
 		
 
 	}
-
-	
-
+	/**
+	 * depending on the option chosen, the program performs an option <br>
+	 * <b> pre: Assignment of the user in the last position. </b>
+	 * @param first2
+	 */
 	private void asignarUltimo(Node first2) {
 		if(first2.getNext() != null) {
 			asignarUltimo(first2.getNext());
@@ -67,24 +64,19 @@ public class Board {
 		}
 		
 	}
-
 	/**
 	 * print matrices <br>
 	 * <b> pre:the number of rows and columns </b>
-	 * 
 	 * @return out
 	 */
-
 	public String prePrint() {
 		String out2 = "";
 		String out = printBoard(out2, first, 1, 1, 0);
 		return out;
 	}
-
 	/**
 	 * print the matrix with all the information <br>
 	 * <b> pre: you need all the information of the columns rows and players </b>
-	 * 
 	 * @return out
 	 */
 	public String prePrint2() {
@@ -92,11 +84,9 @@ public class Board {
 		String out = printBoard2(out2, first, 1, 1, 0);
 		return out;
 	}
-
 	/**
 	 * create the board <br>
 	 * <b> pre: need the number of rows and columns</b>
-	 * 
 	 * @param first1
 	 * @param i
 	 * @param n2
@@ -120,14 +110,11 @@ public class Board {
 			current.setPrev(first1);
 			createdBoard(current, i, n, n2);
 		}
-		
 		return first1;
 	}
-
 	/**
 	 * print current board <br>
 	 * <b> pre: dashboard data </b>
-	 * 
 	 * @param out
 	 * @param first2
 	 * @param num
@@ -160,11 +147,9 @@ public class Board {
 		}
 		return out;
 	}
-
 	/**
 	 ** record of space next <br>
 	 * <b> pre: make use this space </b>
-	 * 
 	 * @param first2
 	 * @param num2
 	 * @param out
@@ -180,11 +165,9 @@ public class Board {
 
 		return out;
 	}
-
 	/**
 	 * record of space previuos <br>
 	 * <b> pre: make use this space </b>
-	 * 
 	 * @param first2
 	 * @param num2
 	 * @param out
@@ -198,11 +181,9 @@ public class Board {
 		}
 		return out;
 	}
-
 	/**
 	 * record of nodo <br>
 	 * <b> pre: make use of nodo </b>
-	 * 
 	 * @param first2
 	 * @param num2
 	 * @param out
@@ -216,31 +197,25 @@ public class Board {
 		}
 		return first2;
 	}
-
 	/**
 	 * get method <br>
 	 * <b> pre: constructor method </b>
-	 * 
 	 * @return numRows
 	 */
 	public int getFilas() {
 		return filas;
 	}
-
 	/**
 	 * set method <br>
 	 * <b> pre: constructor method </b>
-	 * 
 	 * @param numRows: position
 	 */
 	public void setFilas(int numRows) {
 		this.filas = numRows;
 	}
-
 	/**
 	 * set the position of the snake <br>
 	 * <b> pre: constructor method </b>
-	 * 
 	 * @param position snake position
 	 * @param let
 	 * @return out
@@ -249,11 +224,9 @@ public class Board {
 		boolean out = positionEnlaces(first.getNext(), position, let);
 		return out;
 	}
-
 	/**
 	 * is the position of a part of the snake end / beginning<br>
 	 * <b> pre: the number of snakes to be created, a free space </b>
-	 * 
 	 * @param first2
 	 * @param position
 	 * @param let
@@ -279,11 +252,9 @@ public class Board {
 
 		return out;
 	}
-
 	/**
 	 * print the board <br>
 	 * <b> pre: the data is needed to create it </b>
-	 * 
 	 * @param out
 	 * @param first2
 	 * @param num
@@ -316,11 +287,9 @@ public class Board {
 		}
 		return out;
 	}
-
 	/**
 	 * remember the next move <br>
 	 * <b> pre: make the move </b>
-	 * 
 	 * @param first2
 	 * @param num2
 	 * @param out
@@ -333,14 +302,11 @@ public class Board {
 			num2++;
 			out = recordNext2(first2, num2, out);
 		}
-
 		return out;
 	}
-
 	/**
 	 * remember previous movements<br>
 	 * <b> pre: having previously moved </b>
-	 * 
 	 * @param first2
 	 * @param num2
 	 * @param out
@@ -354,11 +320,9 @@ public class Board {
 		}
 		return out;
 	}
-
 	/**
 	 * Find the player on the board<br>
 	 * <b> pre: We need the game to have started </b>
-	 * 
 	 * @param symbol
 	 * @param position
 	 * @return returns, if it finds the desired player
@@ -368,11 +332,15 @@ public class Board {
 		boolean out = movePlayer(foundPlayer(first, symbol, position), position, symbol, out1,first);
 		return out;
 	}
-
+	
+	public boolean foundPlayerPrev(String symbol, int position) {
+		boolean out1 = false;
+		boolean out = movePlayerPrev(foundPlayer(first, symbol, position), position, symbol, out1,first);
+		return out;
+	}
 	/**
 	 * Find the player on the board<br>
 	 * <b> pre: We need the game to have started </b>
-	 * 
 	 * @param node     node where the player is
 	 * @param symbol   player symbol
 	 * @param position postion player
@@ -390,11 +358,9 @@ public class Board {
 		
 		return node;
 	}
-
 	/**
 	 * move the player token<br>
 	 * <b> pre:you need to correctly define the board </b>
-	 * 
 	 * @param node     next nodo
 	 * @param position postion player
 	 * @param symbol   player symbol
@@ -402,19 +368,17 @@ public class Board {
 	 * @param first2 
 	 * @return out allows the movement of the player's token
 	 */
-	private boolean movePlayer(Node node, int position, String symbol, boolean out, Node first2) {
-
-		
+	private boolean movePlayerPrev(Node node, int position, String symbol, boolean out, Node first2) {
 			if (position >= 1) {
-				if (node.getNext() != null) {
+				if (node.getPrev() != null) {
 
 					position--;
 
-					out = movePlayer(node.getNext(), position, symbol, out,first2);
+					out = movePlayerPrev(node.getPrev(), position, symbol, out,first2);
 
 				}else {
 					position--;
-					out = movePlayer(first2, position, symbol, out,first2);
+					out = movePlayerPrev(first2, position, symbol, out,first2);
 				}
 			} else {
 				if (semillas == 0) {
@@ -453,11 +417,61 @@ public class Board {
 		
 		return out;
 	}
+	
+	
+	
+	private boolean movePlayer(Node node, int position, String symbol, boolean out, Node first2) {
+		if (position >= 1) {
+			if (node.getNext() != null) {
 
+				position--;
+
+				out = movePlayer(node.getNext(), position, symbol, out,first2);
+
+			}else {
+				position--;
+				out = movePlayer(first2, position, symbol, out,first2);
+			}
+		} else {
+			if (semillas == 0) {
+				out = true;
+			}
+			if (node.getEnlace() != " ") {
+
+				if (foundEnlace(node.getPrev(), node.getEnlace(), symbol) == false) {
+
+					String player = node.getPlayers();
+					node.setPlayers(symbol + player);
+				}
+			} else {
+				if (node.getSemilla() != " ") {
+					if (symbol.equals("R")) {
+						setPlayerR(getPlayerR() + 1);
+					}
+					if (symbol.equals("M")) {
+						setPlayerM(getPlayerM() + 1);
+					}
+					node.setSemilla(" ");
+					semillas--;
+					if (foundSemilla(node.getNext(), node.getSemilla(), symbol) == false) {
+
+						String player = node.getPlayers();
+						node.setPlayers(symbol + player);
+
+					}
+				} else {
+					String player = node.getPlayers();
+					node.setPlayers(symbol + player);
+				}
+			}
+		}
+
+	
+	return out;
+}
 	/**
 	 * position of the ladder beginning/end <br>
 	 * <b> pre: need two squares to connect </b>
-	 * 
 	 * @param position
 	 * @param let
 	 * @return returns if it finds the snake position
@@ -466,11 +480,9 @@ public class Board {
 		boolean out = positionSemillas(first.getNext(), position, let);
 		return out;
 	}
-
 	/**
 	 * position of the ladder beginning/end <br>
 	 * <b> pre: need two squares to connect </b>
-	 * 
 	 * @param first2
 	 * @param position position ladder
 	 * @param let
@@ -496,11 +508,9 @@ public class Board {
 
 		return out;
 	}
-
 	/**
 	 * method of going forward in search of stairs <br>
 	 * <b> pre: the location of the ladder </b>
-	 * 
 	 * @param first2
 	 * @param let
 	 * @param symbol
@@ -511,11 +521,9 @@ public class Board {
 
 		return out;
 	}
-
 	/**
 	 * method to go back in search of the snake <br>
 	 * <b> pre: the location of the snake </b>
-	 * 
 	 * @param first2
 	 * @param let
 	 * @param symbol
@@ -535,21 +543,17 @@ public class Board {
 		}
 		return out;
 	}
-
 	/**
 	 * get method <br>
 	 * <b> pre: constructor method </b>
-	 * 
 	 * @return laders
 	 */
 	public int getSemillas() {
 		return semillas;
 	}
-
 	/**
 	 * set method <br>
 	 * <b> pre: constructor method </b>
-	 * 
 	 * @param laders: ladders
 	 */
 	public void setSemillas(int semillas) {

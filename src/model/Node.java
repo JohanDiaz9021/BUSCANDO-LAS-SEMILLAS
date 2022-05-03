@@ -9,8 +9,6 @@ public class Node {
 	private int pos;
 	private Node next;
 	private Node prev;
-	
-	
 	/**
 	 * constructor method <br>
 	 * <b> pre: we need the atributes </b> 
@@ -20,9 +18,8 @@ public class Node {
 		pos = po;
 		semillas = " ";
 		enlaces = " ";
-		players = " ";
+		players = "";
 	}
-
 	//________________________________
 	 /**
 	 * get method <br>
@@ -32,10 +29,7 @@ public class Node {
 	public int getRow() {
 		return row;
 	}
-	
 	//________________________________
-	
-	
 	/**
 	 * get method <br>
 	 * <b> pre: constructor method </b>  
@@ -44,10 +38,7 @@ public class Node {
 	public int getCol() {
 		return col;
 	}
-	
 	//________________________________
-	
-	
 	/**
 	 * get method <br>
 	 * <b> pre: constructor method </b>  
@@ -56,24 +47,16 @@ public class Node {
 	public char getNameCol() {
 		return (char) ('A' + col);
 	}
-
-	
-	
 	//________________________________
-	
 	/**
 	 * get method <br>
 	 * <b> pre: constructor method </b>  
 	 * @return next
 	 */
-	
 	public Node getNext() {
 		return next;
 	}
-	
-	
 	//________________________________
-	
 	/**
 	 * set method <br>
 	 * <b> pre: constructor method </b> 
@@ -82,10 +65,7 @@ public class Node {
 	public void setNext(Node n) {
 		next = n;
 	}
-	
-	
 	//________________________________
-	
 	/**
 	 * get method <br>
 	 * <b> pre: constructor method </b>  
@@ -94,10 +74,7 @@ public class Node {
 	public Node getPrev() {
 		return prev;
 	}
-	
-	
 	//________________________________
-	
 	/**
 	 * set method <br>
 	 * <b> pre: constructor method </b> 
@@ -106,10 +83,6 @@ public class Node {
 	public void setPrev(Node p) {
 		prev = p;
 	}
-	
-	
-	
-
 	/**
 	 * shoe information about 1 space where the position , the snake or the ladder is located <br>
 	 * <b> pre: the data of the position, that ladder or snake </b>  
@@ -118,19 +91,16 @@ public class Node {
 	public String toString() {
 		return "[" + enlaces + "\t]";
 	}
-	
-	
 	//________________________________
-	
 	/**
 	 * shoe information about 1 space where the  player, the snake or the ladder is located <br>
 	 * <b> pre: the data of the position, that ladder or snake </b>  
 	 * @return A message with player, ladder or snake
 	 */
 	public String toString2() {
-		if(players.equals(" ")) {
+		if(players.equals("")) {
 			if(semillas.equals(" ")) {
-				return "[" + pos + "\t]";
+				return "[" + pos  + "\t]";
 			}else {
 				return "[" + semillas + "\t]";
 			}
@@ -140,10 +110,7 @@ public class Node {
 		}
 		
 	}
-	
 	//________________________________
-	
-	
 	/**
 	 * get method <br>
 	 * <b> pre: constructor method </b>  
@@ -152,10 +119,7 @@ public class Node {
 	public int getPos() {
 		return pos;
 	}
-	
 	//________________________________
-	
-	
 	/**
 	 * set method <br>
 	 * <b> pre: constructor method </b> 
@@ -164,10 +128,7 @@ public class Node {
 	public void setPos(int pos) {
 		this.pos = pos;
 	}
-	
 	//________________________________
-	
-	
 	/**
 	 * get method <br>
 	 * <b> pre: constructor method </b>  
@@ -176,10 +137,7 @@ public class Node {
 	public String getEnlace() {
 		return enlaces;
 	}
-	
 	//________________________________
-	
-	
 	/**
 	 * set method <br>
 	 * <b> pre: constructor method </b> 
@@ -188,31 +146,25 @@ public class Node {
 	public void setEnlace(String snakeColum) {
 		this.enlaces = snakeColum;
 	}
-	
 	//________________________________
-	
 	/**
 	 * get method <br>
 	 * <b> pre: constructor method </b>  
-	 * @return lader
+	 * @return semillas
 	 */
 	public String getSemilla() {
 		return semillas;
 	}
-	
 	//________________________________
-	
 	/**
 	 * set method <br>
 	 * <b> pre: constructor method </b> 
-	 * @param lader: the ladder
+	 * @param semilla: the semilla
 	 */
-	public void setSemilla(String lader) {
-		this.semillas = lader;
+	public void setSemilla(String semilla) {
+		this.semillas = semilla;
 	}
-	
 	//________________________________
-	
 	/**
 	 * get method <br>
 	 * <b> pre: constructor method </b>  
@@ -221,7 +173,6 @@ public class Node {
 	public String getPlayers() {
 		return players;
 	}
-	
 	//________________________________
 	/**
 	 * set method <br>
