@@ -109,17 +109,36 @@ public class Menu {
 					int numMoves = juego.rollDice();
 					System.out.println(numMoves + " <= resultado dado ");
 					System.out.println("\n");
+					System.out.println("Desea que su ficha\n"+"1. Avance\n"+"2. Retroceda\n");
+					int opcion2 = scanner.nextInt();
+					switch(opcion2) {
+					case 1:
+						if (juego.movePlayer(juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch),
+								numMoves) == true) {
+							System.out.println("****  FIN DEL JUEGO  ****");
+							win = true;
+						} else {
 
-					if (juego.movePlayerPrev(juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch),
-							numMoves) == true) {
-						System.out.println("****  FIN DEL JUEGO  ****");
-						win = true;
-					} else {
-
-						if (players > 1) {
-							ini++;
+							if (players > 1) {
+								ini++;
+							}
 						}
+						break;
+						
+					case 2: 
+						if (juego.movePlayerPrev(juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch),
+								numMoves) == true) {
+							System.out.println("****  FIN DEL JUEGO  ****");
+							win = true;
+						} else {
+
+							if (players > 1) {
+								ini++;
+							}
+						}
+						break;
 					}
+					
 					run = false;
 					break;
 				case 2:
@@ -155,19 +174,42 @@ public class Menu {
 					int numMoves = juego.rollDice();
 					System.out.println(numMoves + " <= resultado dado ");
 					System.out.println("\n");
-					if (juego.movePlayer(juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch),
-							numMoves) == true) {
+					System.out.println("Desea que su ficha\n"+"1. Avance\n"+"2. Retroceda\n");
+					int opcion2 = scanner.nextInt();
+					switch(opcion2) {
+					case 1:
+						if (juego.movePlayer(juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch),
+								numMoves) == true) {
 
-						win = true;
-						System.out.println("****  FIN DEL JUEGO  ****");
-					} else {
-						ini++;
-						if (ini == players) {
-							ini = 0;
+							win = true;
+							System.out.println("****  FIN DEL JUEGO  ****");
+						} else {
+							ini++;
+							if (ini == players) {
+								ini = 0;
+
+							}
 
 						}
+						break;
+						
+					case 2: 
+						if (juego.movePlayerPrev(juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch),
+								numMoves) == true) {
 
+							win = true;
+							System.out.println("****  FIN DEL JUEGO  ****");
+						} else {
+							ini++;
+							if (ini == players) {
+								ini = 0;
+
+							}
+
+						}
+						break;
 					}
+							
 					run = false;
 					break;
 				case 2:
