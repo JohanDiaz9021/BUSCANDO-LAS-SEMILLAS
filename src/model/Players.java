@@ -9,10 +9,10 @@ public class Players implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String nickName;
 	private String symbol;
-	private int score;
+	private double score;
 	private Players left;
 	private Players right;
-	private String caracters;
+
 	
 	/**
 	 * constructor method <br>
@@ -21,18 +21,17 @@ public class Players implements Serializable{
 	 * @param s player's symbol
 	 * @param sc player's  score
 	 */
-	public  Players(String n,String s,int sc,String ca) {
+	public  Players(String n,String s,Double sc) {
 		nickName = n;
 		symbol= s;
 		score= sc;
-		caracters = ca;
 	}
 	/**
 	 * get method <br>
 	 * <b> pre: constructor method </b>  
 	 * @return score
 	 */
-	public int getScore() {
+	public double getScore() {
 		return score;
 	}
 	//________________________________
@@ -41,7 +40,7 @@ public class Players implements Serializable{
 	 * <b> pre: constructor method </b> 
 	 * @param score: player score
 	 */
-	public void setScore(int score) {
+	public void setScore(Double score) {
 		this.score = score;
 	}
 	//________________________________
@@ -123,26 +122,10 @@ public class Players implements Serializable{
 	 * @return a message showing all the information of the players
 	 */
 	public String data() {
-		String out =	"Nombre: "+this.nickName+" Simbolo: "+symbol+" Puntaje: "+score+" Jugadores: "+caracters ;
+		String out =	"Nombre: "+this.nickName+" Simbolo: "+symbol+" Puntaje: "+score ;
 		return out;
 		
 	}
 	//________________________________
-	/**
-	 * get method <br>
-	 * <b> pre: constructor method </b>  
-	 * @return caracters
-	 */
-	public String getCaracters() {
-		return caracters;
-	}
-	//________________________________
-	/**
-	 * set method <br>
-	 * <b> pre: constructor method </b> 
-	 * @param caracters: player token
-	 */
-	public void setCaracters(String caracters) {
-		this.caracters = caracters;
-	}
+
 }

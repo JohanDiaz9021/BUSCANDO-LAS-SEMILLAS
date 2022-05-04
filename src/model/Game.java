@@ -12,27 +12,33 @@ public class Game {
 	private int positionB;
 	public final static String enlaces = "ABCDEFGHIJKLNOPQSTW";
 	private Board board;
+	
 
 	public Game() {
 		positionA = 0;
 		positionB = 1;
-	} 
+	
+	}
+
 	/**
 	 * just the board <br>
 	 * <b> pre: the number of rows and columns </b>
+	 * 
 	 * @param col
 	 * @param row
 	 * @param players
 	 * @return
 	 */
 	public String printBoard(int col, int row, String players, int value) {
-		board = new Board(row, col, players , value);
+		board = new Board(row, col, players, value);
 		String out = board.prePrint();
 		return out;
 	}
+
 	/**
 	 * full board <br>
 	 * <b> pre: all data </b>
+	 * 
 	 * @return
 	 */
 
@@ -40,18 +46,22 @@ public class Game {
 		String out = board.prePrint();
 		return out;
 	}
+
 	/**
-	 * // tablero con los valores  <br>
+	 * // tablero con los valores <br>
 	 * <b> pre: all data </b>
+	 * 
 	 * @return
 	 */
 	public String printValue() {
 		String out = board.prePrint2();
 		return out;
 	}
+
 	/**
 	 * start the game <br>
-	 * <b> pre: is in charge of playing  </b>
+	 * <b> pre: is in charge of playing </b>
+	 * 
 	 * @param columna
 	 * @param fila
 	 * @param enlaces
@@ -61,7 +71,7 @@ public class Game {
 	 * @param ini
 	 * @param ch
 	 * @return out
-	 */	
+	 */
 	public String play(int columna, int fila, int enlaces, int semilla, String num4, int players, int ini, char ch) {
 		String out = "";
 		if (ini == 0) {
@@ -82,9 +92,11 @@ public class Game {
 
 		return out;
 	}
+
 	/**
 	 * generate a random number from 1 to 6 <br>
 	 * <b> pre: you need the library and the method to automatically generate </b>
+	 * 
 	 * @return num returns the number of the dice randomly
 	 */
 	public int rollDice() {
@@ -93,9 +105,11 @@ public class Game {
 
 		return num;
 	}
+
 	/**
 	 * print the board <br>
-	 * <b> pre: rows and columns are needed  </b>
+	 * <b> pre: rows and columns are needed </b>
+	 * 
 	 * @param fila
 	 * @param columna
 	 * @param fila1
@@ -105,7 +119,8 @@ public class Game {
 	 * @param count
 	 * @param out2
 	 */
-	public void printBoard(int fila, int columna, int fila1, int columna1, int cuadros, String out, int count,String out2) {
+	public void printBoard(int fila, int columna, int fila1, int columna1, int cuadros, String out, int count,
+			String out2) {
 		if (cuadros >= 1) {
 			if (fila >= fila1) {
 
@@ -126,17 +141,21 @@ public class Game {
 
 		}
 	}
+
 	/**
 	 * returns the player's movement and symbol<br>
 	 * <b> pre:is takes care of getting the board through recursion </b>
+	 * 
 	 * @return board
 	 */
 	public Board getboard() {
 		return board;
 	}
+
 	/**
 	 * returns the player's movement and symbol<br>
 	 * <b> pre:is responsible for linking the positions of the seeds </b>
+	 * 
 	 * @param colum
 	 * @param rows
 	 * @param numEnlaces
@@ -177,9 +196,11 @@ public class Game {
 			}
 		}
 	}
+
 	/**
 	 * returns the player's movement and symbol<br>
 	 * <b> pre: is responsible for linking the positions of the seeds </b>
+	 * 
 	 * @param position
 	 * @param col
 	 * @param value
@@ -193,9 +214,11 @@ public class Game {
 		}
 		return value;
 	}
+
 	/**
 	 * returns the player's movement and symbol<br>
 	 * <b> pre: is responsible for linking the positions of the seedsB </b>
+	 * 
 	 * @param colum
 	 * @param rows
 	 * @param posA
@@ -203,8 +226,9 @@ public class Game {
 	 * @param value
 	 * @param positionMax
 	 * @param positionMin
-	 */	
-	public void enlacesPositionB(int colum, int rows, int posA, String let, int value, int positionMax,int positionMin) {
+	 */
+	public void enlacesPositionB(int colum, int rows, int posA, String let, int value, int positionMax,
+			int positionMin) {
 		int position = (int) (Math.random() * value) + 2;
 		int total = colum * rows;
 		if (position > 1 && position < total) {
@@ -219,9 +243,11 @@ public class Game {
 			enlacesPositionB(colum, rows, posA, let, value, positionMax, positionMin);
 		}
 	}
+
 	/**
 	 * returns the player's movement and symbol<br>
 	 * <b> pre: takes care of seed positions </b>
+	 * 
 	 * @param position
 	 * @param colum
 	 * @param rows
@@ -229,7 +255,7 @@ public class Game {
 	 * @param rand
 	 * @param value
 	 * @param total
-	 */	
+	 */
 	public void semillasPosition(int colum, int rows, int numSemillas, int rand, int value) {
 		if (numSemillas > 0) {
 
@@ -237,7 +263,7 @@ public class Game {
 			int total = colum * rows;
 			if (position > 1 && position < total) {
 
-				String let ="*";
+				String let = "*";
 				if (board.positionSemillas(position, let) == false) {
 					rand = (int) (Math.random() * value) + 2;
 					semillasPosition(colum, rows, numSemillas, rand, value);
@@ -245,10 +271,10 @@ public class Game {
 					numSemillas--;
 					int mul = 1;
 					int val = foundPostition(position, colum, mul);
-					
+
 					if (val > 1) {
 						val = val - 1;
-					
+
 					}
 					rand = (int) (Math.random() * value) + 2;
 					semillasPosition(colum, rows, numSemillas, rand, value);
@@ -259,9 +285,11 @@ public class Game {
 			}
 		}
 	}
+
 	/**
 	 * returns the player's movement and symbol<br>
 	 * <b> pre: you need to have entered each player's symbol </b>
+	 * 
 	 * @param symbol
 	 * @param position
 	 * @return lm.foundPlayer(symbol, position)
@@ -270,28 +298,42 @@ public class Game {
 		return board.foundPlayer(symbol, position);
 
 	}
-	
+
 	public boolean movePlayerPrev(String symbol, int position) {
 		return board.foundPlayerPrev(symbol, position);
 
 	}
+
 	/**
 	 * returns the player's score and symbol<br>
 	 * <b> pre: takes care of changing the seeds</b>
+	 * 
 	 * @param newNumSemillas
 	 */
-	public void changeSemillas (int newNumSemillas) {
+	public void changeSemillas(int newNumSemillas) {
 		board.setSemillas(newNumSemillas);
-	}          
+	}
+
 	/**
 	 * returns the player's score and symbol<br>
 	 * <b> pre: the points of both players are obtained</b>
+	 * 
 	 * @return out
 	 */
-public String obtenerPuntos() {
-	String out = "";
-	out = "Puntos de Rick " + board.getPlayerR() +"\n";
-	out+= "Puntos de Morty " + board.getPlayerM() +"\n";
+	public String obtenerPuntos() {
+		String out = "";
+		out = "Puntos de Rick " + board.getPlayerR() + "\n";
+		out += "Puntos de Morty " + board.getPlayerM() + "\n";
+		return out;
+	}
+
+	public int rick() {
+	int out =	board.getPlayerR();
 	return out;
-}
+	}
+
+	public int morty() {
+		int out =	board.getPlayerM();
+		return out;
+	}
 }
