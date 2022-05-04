@@ -17,8 +17,6 @@ import model.Players;
 public class Menu {
 	private Scanner scanner;
 	public final static String opcionPlayers = "RM";
-	private int positionA;
-	private int positionB;
 	private Game juego;
 	private long inicio;
 	private long finali;
@@ -100,13 +98,7 @@ public class Menu {
 	}
 
 	public String players(String out, int numP) {
-		if (numP >= 1) {
-			out += opcionPlayers.substring(positionA, positionB);
-			numP--;
-			positionA++;
-			positionB++;
-			out = players(out, numP);
-		}
+		out="R"+"M";
 		return out;
 	}
 
