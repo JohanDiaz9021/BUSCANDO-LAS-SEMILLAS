@@ -16,7 +16,6 @@ import model.Players;
 
 public class Menu {
 	private Scanner scanner;
-	public final static String opcionPlayers = "RM";
 	private Game juego;
 	private long inicio;
 	private long finali;
@@ -29,8 +28,6 @@ public class Menu {
 		
 		scanner = new Scanner(System.in);
 		juego = new Game();
-		positionA = 0;
-		positionB = 1;
 
 	}
 
@@ -92,7 +89,7 @@ public class Menu {
 
 		} else {
 			System.out.println(
-					"\nEl numero de serpientes y escalera es superior al numero de celdas o causa conflicto\n");
+					"\nEl numero de Semillas y Enlaces es superior al numero de celdas o causa conflicto\n");
 			// menu(num);
 		}
 	}
