@@ -295,6 +295,7 @@ public class Game {
 	 * @return lm.foundPlayer(symbol, position)
 	 */
 	public boolean movePlayer(String symbol, int position) {
+		
 		return board.foundPlayer(symbol, position);
 
 	}

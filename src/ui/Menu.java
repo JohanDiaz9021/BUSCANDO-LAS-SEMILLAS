@@ -26,8 +26,9 @@ public class Menu {
 	private final static String SAVE_PLAYER = "data/player.txt";
 
 	public Menu() throws FileNotFoundException, ClassNotFoundException, IOException {
-		loadData();
+		
 		players = new ArrayList<Players>();
+		
 		scanner = new Scanner(System.in);
 		juego = new Game();
 		positionA = 0;
@@ -76,7 +77,7 @@ public class Menu {
 
 		if (valueTo - 4 >= value) {
 			inicio = System.currentTimeMillis();
-
+			loadData();
 			juego.printBoard(columnas, filas, num4, value);
 			juego.changeSemillas(semillas);
 			int n = (int) (Math.random() * value) + 2;
@@ -111,97 +112,22 @@ public class Menu {
 
 	private void go(int columnas, int filas, int enlasces, int semillas, String num4, int players, int ini, char ch,
 			boolean win) throws InterruptedException, FileNotFoundException, IOException, ClassNotFoundException {
-		if (ini == 0) {
+		juego.printValue();
+		if(win == false) {
+			if (ini == 0) {
 
-			boolean run = true;
-			while (run) {
-				System.out.println(juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch)
-						+ " jugador  : " + "Rick");
-				System.out
-						.println("1. Tirar dado\r\n" + "2. Ver tablero\r\n" + "3. Ver enlaces\r\n" + "4. Marcador\r\n");
-				int opcion = scanner.nextInt();
-
-				switch (opcion) {
-				case 1:
-					// System.out.println("Enter para tirar dados");// giving the user a chance to
-					// roll
-					scanner.nextLine();// waiting for enter key
-					int numMoves = juego.rollDice();
-					System.out.println(numMoves + " <= resultado dado ");
-					System.out.println("\n");
-					System.out.println("Desea que su ficha\n" + "1. Avance\n" + "2. Retroceda\n");
-					int opcion2 = scanner.nextInt();
-					switch (opcion2) {
-					case 1:
-						if (juego.movePlayer(juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch),
-								numMoves) == true) {
-							win = true;
-							System.out.println("****  FIN DEL JUEGO  ****");
-							double tiempo = (double) ((finali - inicio) / 1000);
-							guardarJugador(tiempo);
-							System.out.println("GANADORES : \n" + jugadores());
-							win = true;
-							finali = System.currentTimeMillis();
-						} else {
-
-							if (players > 1) {
-								ini++;
-							}
-						}
-						break;
-
-					case 2:
-						if (juego.movePlayerPrev(
-								juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch),
-								numMoves) == true) {
-							win = true;
-							System.out.println("****  FIN DEL JUEGO  ****");
-							double tiempo = (double) ((finali - inicio) / 1000);
-							guardarJugador(tiempo);
-							System.out.println("GANADORES : \n" + jugadores());
-							
-							finali = System.currentTimeMillis();
-						} else {
-
-							if (players > 1) {
-								ini++;
-							}
-						}
-						break;
-					}
-
-					run = false;
-					break;
-				case 2:
-					System.out.println(juego.printValue());
-
-					break;
-				case 3:
-					System.out.println(juego.printB());
-
-					break;
-
-				case 4:
-
-					System.out.println(juego.obtenerPuntos());
-					break;
-
-				}
-			}
-		} else {
-			if (win == false) {
 				boolean run = true;
 				while (run) {
 					System.out.println(juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch)
-							+ " jugador N  : " + "Morty");
-					System.out.println(
-							"1. Tirar dado\r\n" + "2. Ver tablero\r\n" + "3. Ver enlaces\r\n" + "4. Marcador\r\n");
+							+ " jugador  : " + "Rick");
+					System.out
+							.println("1. Tirar dado\r\n" + "2. Ver tablero\r\n" + "3. Ver enlaces\r\n" + "4. Marcador\r\n");
 					int opcion = scanner.nextInt();
 
 					switch (opcion) {
 					case 1:
-
-						System.out.println("Enter para tirar dados");// giving the user a chance to roll
+						// System.out.println("Enter para tirar dados");// giving the user a chance to
+						// roll
 						scanner.nextLine();// waiting for enter key
 						int numMoves = juego.rollDice();
 						System.out.println(numMoves + " <= resultado dado ");
@@ -210,23 +136,20 @@ public class Menu {
 						int opcion2 = scanner.nextInt();
 						switch (opcion2) {
 						case 1:
-							if (juego.movePlayer(
-									juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch),
+							if (juego.movePlayer("R",
 									numMoves) == true) {
-
 								win = true;
-								finali = System.currentTimeMillis();
 								System.out.println("****  FIN DEL JUEGO  ****");
 								double tiempo = (double) ((finali - inicio) / 1000);
 								guardarJugador(tiempo);
 								System.out.println("GANADORES : \n" + jugadores());
+								win = true;
+								finali = System.currentTimeMillis();
 							} else {
-								ini++;
-								if (ini == players) {
-									ini = 0;
 
+								if (players > 1) {
+									ini++;
 								}
-
 							}
 							break;
 
@@ -234,20 +157,18 @@ public class Menu {
 							if (juego.movePlayerPrev(
 									juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch),
 									numMoves) == true) {
-
 								win = true;
-								finali = System.currentTimeMillis();
 								System.out.println("****  FIN DEL JUEGO  ****");
 								double tiempo = (double) ((finali - inicio) / 1000);
 								guardarJugador(tiempo);
 								System.out.println("GANADORES : \n" + jugadores());
+								
+								finali = System.currentTimeMillis();
 							} else {
-								ini++;
-								if (ini == players) {
-									ini = 0;
 
+								if (players > 1) {
+									ini++;
 								}
-
 							}
 							break;
 						}
@@ -267,20 +188,109 @@ public class Menu {
 
 						System.out.println(juego.obtenerPuntos());
 						break;
+
+					}
+				}
+			} else {
+				if (win == false) {
+					boolean run = true;
+					while (run) {
+						System.out.println(juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch)
+								+ " jugador N  : " + "Morty");
+						System.out.println(
+								"1. Tirar dado\r\n" + "2. Ver tablero\r\n" + "3. Ver enlaces\r\n" + "4. Marcador\r\n");
+						int opcion = scanner.nextInt();
+
+						switch (opcion) {
+						case 1:
+
+							System.out.println("Enter para tirar dados");// giving the user a chance to roll
+							scanner.nextLine();// waiting for enter key
+							int numMoves = juego.rollDice();
+							System.out.println(numMoves + " <= resultado dado ");
+							System.out.println("\n");
+							System.out.println("Desea que su ficha\n" + "1. Avance\n" + "2. Retroceda\n");
+							int opcion2 = scanner.nextInt();
+							switch (opcion2) {
+							case 1:
+								if (juego.movePlayer(
+										"M",
+										numMoves) == true) {
+									
+									win = true;
+									finali = System.currentTimeMillis();
+									System.out.println("****  FIN DEL JUEGO  ****");
+									double tiempo = (double) ((finali - inicio) / 1000);
+									guardarJugador(tiempo);
+									System.out.println("GANADORES : \n" + jugadores());
+								} else {
+									ini++;
+									if (ini == players) {
+										ini = 0;
+
+									}
+
+								}
+								break;
+
+							case 2:
+								if (juego.movePlayerPrev(
+										juego.play(columnas, filas, enlasces, semillas, num4, players, ini, ch),
+										numMoves) == true) {
+
+									win = true;
+									finali = System.currentTimeMillis();
+									System.out.println("****  FIN DEL JUEGO  ****");
+									double tiempo = (double) ((finali - inicio) / 1000);
+									guardarJugador(tiempo);
+									System.out.println("GANADORES : \n" + jugadores());
+								} else {
+									ini++;
+									if (ini == players) {
+										ini = 0;
+
+									}
+
+								}
+								break;
+							}
+
+							run = false;
+							break;
+						case 2:
+							System.out.println(juego.printValue());
+
+							break;
+						case 3:
+							System.out.println(juego.printB());
+
+							break;
+
+						case 4:
+
+							System.out.println(juego.obtenerPuntos());
+							break;
+						}
 					}
 				}
 			}
-		}
-		if (win == false) {
-			
-			go(columnas, filas, enlasces, semillas, num4, players, ini, ch, win);
+			if (win == false) {
+				
+				go(columnas, filas, enlasces, semillas, num4, players, ini, ch, win);
+			}
 		}
 	}
 
+	
+	
+	
+	
+	
 	private void guardarJugador(double tiempo) throws FileNotFoundException, IOException {
 		String name = "";
 		if (juego.rick() > juego.morty()) {
 			System.out.println("El ganador fue : Rick obtuvo" + juego.rick());
+			scanner.nextLine();
 			System.out.println("Escriba Su nombre ");
 			name = scanner.nextLine();
 			double puntaje = juego.rick() * 120 - tiempo;
@@ -288,7 +298,9 @@ public class Menu {
 		} else {
 			if (juego.rick() < juego.morty()) {
 				System.out.println("El ganador fue  Morty  obtuvo " + juego.morty());
+				scanner.nextLine();
 				System.out.println("Escriba Su nombre ");
+				
 				name = scanner.nextLine();
 				double puntaje = juego.rick() * 120 - tiempo;
 				recorridoDeGuardar("Morty", name, puntaje);
@@ -297,7 +309,7 @@ public class Menu {
 				
 			}
 		}
-
+		saveData();
 	}
 
 	private void recorridoDeGuardar(String string, String name, double puntaje) throws FileNotFoundException, IOException {
@@ -308,16 +320,7 @@ public class Menu {
 				found = false;
 			}
 		}
-		if (found) {
-			for (int i = 0; i < players.size(); i++) {
-				if (players.get(i).getScore() <  puntaje) {
-					Players player1 = new Players(string, name, puntaje);
-					players.add(i,player1);
-					found = false;
-				}
-			}
-		}
-		if (found) {
+		if (found == true) {
 			Players player1 = new Players(string, name, puntaje);
 			players.add(player1);
 		}

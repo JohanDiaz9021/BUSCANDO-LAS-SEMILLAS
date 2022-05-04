@@ -10,8 +10,6 @@ public class Players implements Serializable{
 	private String nickName;
 	private String symbol;
 	private double score;
-	private Players left;
-	private Players right;
 
 	
 	/**
@@ -22,8 +20,8 @@ public class Players implements Serializable{
 	 * @param sc player's  score
 	 */
 	public  Players(String n,String s,Double sc) {
-		nickName = n;
-		symbol= s;
+		nickName = s;
+		symbol= n;
 		score= sc;
 	}
 	/**
@@ -79,42 +77,7 @@ public class Players implements Serializable{
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
 	}
-	//________________________________
-	/**
-	 * get method <br>
-	 * <b> pre: constructor method </b>  
-	 * @return left
-	 */
-	public Players getLeft() {
-		return left;
-	}
-	//________________________________
-	/**
-	 * get method <br>
-	 * <b> pre: constructor method </b>  
-	 * @return right
-	 */
-	public Players getRight() {
-		return right;
-	}
-	//________________________________
-	/**
-	 * set method <br>
-	 * <b> pre: constructor method </b> 
-	 * @param 1: move one square to the left
-	 */
-	public void setLeft(Players l) {
-		left = l;
-	}
-	//________________________________
-	/**
-	 * set method <br>
-	 * <b> pre: constructor method </b> 
-	 * @param r: move one square to the right
-	 */
-	public void setRight(Players r) {
-		right = r;
-	}
+	
 	//________________________________
 	/**
 	 * show player information on screen<br>
